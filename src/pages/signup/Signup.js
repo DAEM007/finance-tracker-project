@@ -47,7 +47,7 @@ export default function Signup() {
         />
       </label>
 
-      <button>SignUp</button>
+      <button className="btn">SignUp</button>
 
     </form>  
   )
