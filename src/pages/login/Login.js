@@ -1,7 +1,6 @@
 // All react imports
-
-// All styles imports
 import { useState } from "react";
+// All styles imports
 import styles from "./Login.module.css";
 
 
