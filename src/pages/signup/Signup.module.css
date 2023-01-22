@@ -1,0 +1,24 @@
+
+/* Sign-up styles */
+.sign-up {
+    margin: 60px auto;
+    max-width: 360px;
+    padding: 20px;
+}
+
+.sign-up label {
+    display: block;
+    margin: 30px auto;
+}
+
+.sign-up span {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.sign-up input {
+    padding: 8px 6px;
+    font-size: 1em;
+    color: #777;
+    width: 100%;
+}
