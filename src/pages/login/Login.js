@@ -8,7 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
     console.log(`email: ${email} password: ${password}`);
@@ -16,7 +16,7 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles['login-form']}>
+    <form onSubmit={handleLogin} className={styles['login-form']}>
       <h2>Login here...</h2>
       <label>
         <span>email:</span>
