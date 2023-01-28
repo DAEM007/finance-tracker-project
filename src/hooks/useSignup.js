@@ -1,11 +1,16 @@
+// All react imports
 import { useState } from "react";
+// Firebase imports
 import { auth } from "../firebase/Config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+// all hooks import
+import { useAuthContext } from "./useAuthContext";
 
 
 const useSignup = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
+    const { dispatch } = useAuthContext();
 
     const signUp = async (email, password, name) => {
         setError(null);
@@ -14,7 +19,7 @@ const useSignup = () => {
         try{
             // signup users
             const cred = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(cred.user);
+            // console.log(cred.user);
 
             // If we don't get a response for cred then we need an error
             if(!cred){
@@ -23,6 +28,9 @@ const useSignup = () => {
 
             // If we do get a response for cred then we can update the user's information
             await updateProfile(auth.currentUser, { displayName: name });
+
+            // set a dispatch action to Signup/Login
+            dispatch({type: 'LOGIN', payload: cred.user});
 
             setError(null);
             setIsPending(false);
