@@ -1,5 +1,5 @@
 // All react imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Firebase imports
 import { auth } from "../firebase/Config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -8,6 +8,7 @@ import { useAuthContext } from "./useAuthContext";
 
 
 const useSignup = () => {
+    const [isCancelled, setIsCancelled] = useState(false);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
     const { dispatch } = useAuthContext();
@@ -32,18 +33,29 @@ const useSignup = () => {
             // dispatch an action to Signup/Login
             dispatch({type: 'LOGIN', payload: cred.user});
 
-            setError(null);
-            setIsPending(false);
+            // update states only when isCancelled is false for useEffect cleanup
+            if(!isCancelled){
+                setError(null);
+                setIsPending(false);
+            }
+            
 
         }
         catch(err){
-            console.log(err.message);
-            setError(err.message);
-            setIsPending(false);
+            if(!isCancelled){
+                console.log(err.message);
+                setError(err.message);
+                setIsPending(false);
+            }
         }
         
 
     }
+
+    // clean up function to deal with leakages and unwanted behaivours in mounting/unmounting component
+    useEffect(() => {
+        return () => setIsCancelled(true);
+    }, [])
 
     // return the destructured form of all variables and functions to be used
     return {error, isPending, signUp}
