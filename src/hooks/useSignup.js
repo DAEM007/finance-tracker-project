@@ -29,7 +29,7 @@ const useSignup = () => {
             // If we do get a response for cred then we can update the user's information
             await updateProfile(auth.currentUser, { displayName: name });
 
-            // set a dispatch action to Signup/Login
+            // dispatch an action to Signup/Login
             dispatch({type: 'LOGIN', payload: cred.user});
 
             setError(null);
