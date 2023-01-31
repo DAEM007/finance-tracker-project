@@ -1,20 +1,34 @@
 // All react imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// All firebase imports
+import useFirestore from "../../hooks/useFirestore";
 
 
-const TransactionForm = () => {
+const TransactionForm = ({ userId }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
+    const { AddDocument, response } = useFirestore('transactions');
 
     // function to handle submission of the form
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log({
+        // Add documents to firebase
+        AddDocument({
+            uid: userId,
             name,
             amount
-        });
+        })
+
     }
+
+    // clear form as a side effect after submitting the form
+    useEffect(() => {
+        if(response.success){
+            setName('');
+            setAmount('');
+        }
+    }, [response.success])
 
     return (
         <>
