@@ -33,7 +33,7 @@ const TransactionForm = () => {
                 <label>
                     <span>Amount($):</span>
                     <input 
-                        type="text"
+                        type="number"
                         onChange={ (e) => setAmount(e.target.value) }
                         value={ amount }
                         required
