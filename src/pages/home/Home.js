@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        content
+        Transaction list
       </div>
       <div className={styles.sidebar}>
         <TransactionForm />
