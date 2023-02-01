@@ -23,7 +23,7 @@ const firestoreReducer = (action, state) => {
                 document: action.payload,
                 success: true
             }
-
+        // check action for error
         case 'ERROR':
             return {
                 error: action.payload,
