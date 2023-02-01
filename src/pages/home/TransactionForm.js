@@ -22,13 +22,15 @@ const TransactionForm = ({ userId }) => {
 
     }
 
-    // clear form as a side effect after submitting the form
+    // Reset form as a side effect after submission
     useEffect(() => {
-        if(response.success){
-            setName('');
-            setAmount('');
+        if(!response.success) {
+            setName('')
+            setAmount('')
         }
     }, [response.success])
+
+    // check out the above logic for useEffect again!!!
 
     return (
         <>
