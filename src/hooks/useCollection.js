@@ -19,7 +19,8 @@ const useCollection = (col) => {
             snapshot.docs.forEach((doc) => {
                 results.push({ ...doc.data(), id: doc.id })
             })
-            console.log(results);
+            // console.log(results);
+            
             // update states
             setDocuments(results);
             setError(null);
