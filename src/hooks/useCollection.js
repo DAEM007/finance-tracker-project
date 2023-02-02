@@ -1,17 +1,30 @@
 // All react imports
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // All firebase imports
 import { db } from "../firebase/Config";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 
-const useCollection = (col) => {
+const useCollection = (col, _query, _orderBy) => {
     const [documents, setDocuments] = useState(null);
     const [error, setError] = useState(null);
+    // query and orderBy arguments in the useCollection hook
+    const q = useRef(_query).current;
+    const order = useRef(_orderBy).current;
 
     useEffect(() => {
         // collection reference
         let colRef = collection(db, col);
+
+        // check for a query argument
+        if(query) {
+            colRef = query(colRef, where(...q));
+        }
+
+        // check for a orderBy argument
+        if(orderBy) {
+            colRef = query(colRef, orderBy(...order));
+        }
 
         // Fetch documents from the collection
         const unsub = onSnapshot(colRef, (snapshot) => {
@@ -20,7 +33,7 @@ const useCollection = (col) => {
                 results.push({ ...doc.data(), id: doc.id })
             })
             // console.log(results);
-            
+
             // update states
             setDocuments(results);
             setError(null);
@@ -31,7 +44,7 @@ const useCollection = (col) => {
 
         return () => unsub()
         
-    }, [col])
+    }, [col, q, order])
 
     return { documents, error };
 
