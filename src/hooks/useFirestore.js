@@ -2,7 +2,7 @@
 import { useReducer } from "react";
 // All firebase imports
 import { db, timestamp } from "../firebase/Config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 
 // reducer function
 const firestoreReducer = (action, state) => {
@@ -23,6 +23,14 @@ const firestoreReducer = (action, state) => {
                 document: action.payload,
                 success: true
             }
+        // check action type for DeleteDoc
+        case 'DELETE_DOC':
+            return {
+                error: null,
+                isPending: false,
+                document: null,
+                success: true
+            }        
         // check action for error
         case 'ERROR':
             return {
@@ -68,7 +76,20 @@ const useFirestore = (col) => {
 
    }
 
-   const DeleteDocument = () => {
+    // Delete document from firebase
+   const DeleteDocument = async (id) => {
+        // update isPending state
+        dispatch({ type: 'IS_PENDING' })
+
+        try {
+            await deleteDoc(doc(colRef, id));
+            // update document state
+            dispatch({ type: 'DELETE_DOC' })
+        }
+        catch(err) {
+            // update error state
+            dispatch({ type:'ERROR', payload: 'could not delete document' })
+        }
 
    }
 
