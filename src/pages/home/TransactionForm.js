@@ -9,6 +9,7 @@ const TransactionForm = ({ userId }) => {
     const [amount, setAmount] = useState('');
     const { AddDocument, response } = useFirestore('transactions');
 
+
     // function to handle submission of the form
     const handleSubmit = (e) => {
         e.preventDefault();
