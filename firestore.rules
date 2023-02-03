@@ -2,7 +2,13 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /transactions/{document=**} {
-      allow read, write: if true;
+
+      // Allow create for only authenticated users
+      allow create: if request.auth != null;
+
+      // Allow read and delete if the uid of the authenticated user matches the uid of the document in the collection 
+      allow read, delete: if request.auth.uid == resource.data.uid;
+
     }
   }
 }
