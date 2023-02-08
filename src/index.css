@@ -33,7 +33,7 @@ ul {
 }
 
 /* App styles */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 600px) {
   .App {
     width: 100vh;
     height: 100vh;
