@@ -31,3 +31,11 @@ ul {
   background: #1f9751;
   color: #fff;
 }
+
+/* App styles */
+@media screen and (max-width: 375px) {
+  .App {
+    width: 100vh;
+    height: 100vh;
+  }
+}
