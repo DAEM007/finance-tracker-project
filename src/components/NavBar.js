@@ -5,6 +5,8 @@ import useLogout from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 // All styles import
 import styles from "./NavBar.module.css";
+// All assets import
+import DollarSign from "../assets/dollar-sign.png";
 
 
 
@@ -16,7 +18,19 @@ export default function NavBar() {
   return (
     <nav className={styles.navbar}>
         <ul>
-            <li className={styles.title}>mymoney</li>
+            <li className={styles.title}>
+              <span>My M</span>
+              <img 
+                style={{
+                  width: "50px",
+                  height: "40px",
+                  objectFit: "contain",
+                }}
+                src={DollarSign}
+                alt="dollar-sign"
+              />
+              <span>ney</span>
+            </li>
 
             {!user && (
               <>
