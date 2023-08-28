@@ -1,6 +1,6 @@
 # Finance Tracker Project
 
-> The Finance Tracker Project is a simple web-based application designed to help you track your personal finances and manage your expenses. With an intuitive user interface and basic features, this project serves as a starting point for individuals who want to keep track of their financial activities.
+> *The Finance Tracker Project is a simple web-based application designed to help you track your personal finances and manage your expenses. With an intuitive user interface and basic features, this project serves as a starting point for individuals who want to keep track of their financial activities.*
 
 ## Features
 
