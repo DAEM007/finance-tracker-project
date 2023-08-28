@@ -16,7 +16,7 @@
 
 - **User Authentication:** Securely create an account or log in to access and manage your financial information.
 
-## Getting Started with finance tracker
+## Getting Started
 
 1. **Installation:** Clone this repository to your local machine.
    
